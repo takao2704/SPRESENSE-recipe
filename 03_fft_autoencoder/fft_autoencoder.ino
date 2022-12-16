@@ -17,6 +17,7 @@
  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+// libraries
 #include <Audio.h>
 #include <FFT.h>
 #include <SDHCI.h>
@@ -25,28 +26,41 @@ SDClass SD;
 #include <DNNRT.h>
 DNNRT dnnrt;
 
-// libraries
+
 #include <LTE.h>
+// initialize the library instance
+LTE lteAccess;
+LTEScanner scannerNetworks;
+LTEClient client;
+
+/*
+#include <ArduinoHttpClient.h> 
+HttpClient HttpClient; 
+
+#include <ArduinoJson.h>
+*/
+
+#include <stdio.h> 
 
 #define FFT_LEN 1024
 
 // APN name
-#define APP_LTE_APN "soracom.io" // replace your APN
+#define APP_LTE_APN "soracom.io"  // replace your APN
 
 /* APN authentication settings
  * Ignore these parameters when setting LTE_NET_AUTHTYPE_NONE.
  */
 
-#define APP_LTE_USER_NAME "sora" // replace with your username
-#define APP_LTE_PASSWORD  "sora" // replace with your password
+#define APP_LTE_USER_NAME "sora"  // replace with your username
+#define APP_LTE_PASSWORD "sora"   // replace with your password
 
 // APN IP type
-#define APP_LTE_IP_TYPE (LTE_NET_IPTYPE_V4V6) // IP : IPv4v6
+#define APP_LTE_IP_TYPE (LTE_NET_IPTYPE_V4V6)  // IP : IPv4v6
 // #define APP_LTE_IP_TYPE (LTE_NET_IPTYPE_V4) // IP : IPv4
 // #define APP_LTE_IP_TYPE (LTE_NET_IPTYPE_V6) // IP : IPv6
 
 // APN authentication type
-#define APP_LTE_AUTH_TYPE (LTE_NET_AUTHTYPE_CHAP) // Authentication : CHAP
+#define APP_LTE_AUTH_TYPE (LTE_NET_AUTHTYPE_CHAP)  // Authentication : CHAP
 // #define APP_LTE_AUTH_TYPE (LTE_NET_AUTHTYPE_PAP) // Authentication : PAP
 // #define APP_LTE_AUTH_TYPE (LTE_NET_AUTHTYPE_NONE) // Authentication : NONE
 
@@ -56,13 +70,22 @@ DNNRT dnnrt;
  * The RAT set on the modem can be checked with LTEModemVerification::getRAT().
  */
 
-#define APP_LTE_RAT (LTE_NET_RAT_CATM) // RAT : LTE-M (LTE Cat-M1)
+#define APP_LTE_RAT (LTE_NET_RAT_CATM)  // RAT : LTE-M (LTE Cat-M1)
 // #define APP_LTE_RAT (LTE_NET_RAT_NBIOT) // RAT : NB-IoT
 
-// initialize the library instance
-LTE        lteAccess;
-LTEScanner scannerNetworks;
 
+
+LTEUDP lteUdp;
+char host[] = "harvest.soracom.io";
+int port = 8514;
+int ad_value = 0;
+
+
+// URL, path & port (for example: arduino.cc)
+//char server[] = "harvest.soracom.io";
+
+unsigned long prev;
+static const unsigned long interval = 10000;
 
 // モノラル、1024サンプルでFFTを初期化
 FFTClass<AS_CHANNEL_MONO, FFT_LEN> FFT;
@@ -84,6 +107,39 @@ void avgFilter(float dst[FFT_LEN]) {
   }
   ++g_counter;
 }
+
+void udpsend(int ad_value) {
+  Serial.println("UDP Send Start");
+  if (lteUdp.begin(port) == 1) {
+    if (lteUdp.beginPacket(host, port) == 1) {
+      Serial.println("UDP Data make Start");
+      char ad_str[10];
+      sprintf(ad_str, "ad=%04x", ad_value);
+      lteUdp.write(ad_str, 7);
+      if (lteUdp.endPacket() == 1) {
+        Serial.println("UDP Data Send OK");
+        delay(100);
+      } else {
+        Serial.println("UDP Data Send NG(endPacket)");
+      }
+    } else {
+      Serial.println("UDP Data make NG(beginPacket)");
+    }
+    lteUdp.stop();
+    Serial.println("UDP Send Stop");
+  }
+}
+
+
+/*
+void httpsend(){
+  HttpClient.begin(host);
+  http.addHeader("Content-Type", "application/json");
+  int status_code = http.POST((uint8_t*)buffer, strlen(buffer));
+  Serial.printf("status_code=%d\r\n", status_code);
+
+}
+*/
 
 void ltesetup() {
   char apn[LTE_NET_APN_MAXLEN] = APP_LTE_APN;
@@ -114,7 +170,8 @@ void ltesetup() {
                          user_name,
                          password,
                          authtype,
-                         APP_LTE_IP_TYPE) == LTE_READY) {
+                         APP_LTE_IP_TYPE)
+        == LTE_READY) {
       Serial.println("attach succeeded.");
       break;
     }
@@ -136,102 +193,114 @@ void ltesetup() {
 void setup() {
   Serial.begin(115200);
   // SDカードの入力を待つ
-  while (!SD.begin()) {Serial.println("Insert SD card");};
+  while (!SD.begin()) { Serial.println("Insert SD card"); };
 
   ltesetup();
 
   Serial.println("Initialize DNNRT");
   // SDカード上にある学習済モデルを読み込む
-  File nnbfile = SD.open("model.nnb");;
+  File nnbfile = SD.open("model.nnb");
+  ;
   if (!nnbfile) {
     Serial.print("nnb not found");
-    while(1);
+    while (1)
+      ;
   }
   // 学習済モデルでDNNRTを開始する
   int ret = dnnrt.begin(nnbfile);
   if (ret < 0) {
     Serial.print("DNN Runtime begin fail: " + String(ret));
-    while(1);
+    while (1)
+      ;
   }
   // ハミング窓、モノラル、オーバーラップ50%
-  FFT.begin(WindowHamming, AS_CHANNEL_MONO, (FFT_LEN/2));
+  FFT.begin(WindowHamming, AS_CHANNEL_MONO, (FFT_LEN / 2));
 
   Serial.println("Init Audio Recorder");
-  // 入力をマイクに設定  
+  // 入力をマイクに設定
   theAudio->begin();
   theAudio->setRecorderMode(AS_SETRECDR_STS_INPUTDEVICE_MIC);
   // 録音設定：フォーマットはPCM (16ビットRAWデータ)、
   // DSPコーデックの場所の指定 (SDカード上のBINディレクトリ)、
-  // サンプリグレート 48000Hz、モノラル入力  
+  // サンプリグレート 48000Hz、モノラル入力
   int err = theAudio->initRecorder(AS_CODECTYPE_PCM,
-    "/mnt/sd0/BIN", AS_SAMPLINGRATE_48000 ,AS_CHANNEL_MONO);                             
-    if (err != AUDIOLIB_ECODE_OK) {
+                                   "/mnt/sd0/BIN", AS_SAMPLINGRATE_48000, AS_CHANNEL_MONO);
+  if (err != AUDIOLIB_ECODE_OK) {
     Serial.println("Recorder initialize error");
-    while(1);
+    while (1)
+      ;
   }
 
   Serial.println("Start Recorder");
-  theAudio->startRecorder(); // 録音開始
+  theAudio->startRecorder();  // 録音開始
 
+  //実行時間の初期化
+  prev = 0;
 }
 
 
-void loop(){
-  static const uint32_t buffering_time = 
-    FFT_LEN*1000/AS_SAMPLINGRATE_48000;
-  static const uint32_t buffer_size = FFT_LEN*sizeof(int16_t);
-  static const int ch_index = AS_CHANNEL_MONO-1;
-  static char buff[buffer_size]; // 録音データを格納するバッファ
-  static float pDst[FFT_LEN];  // FFT演算結果を格納するバッファ
-  uint32_t read_size; 
-  
+void loop() {
+  static const uint32_t buffering_time =
+    FFT_LEN * 1000 / AS_SAMPLINGRATE_48000;
+  static const uint32_t buffer_size = FFT_LEN * sizeof(int16_t);
+  static const int ch_index = AS_CHANNEL_MONO - 1;
+  static char buff[buffer_size];  // 録音データを格納するバッファ
+  static float pDst[FFT_LEN];     // FFT演算結果を格納するバッファ
+  uint32_t read_size;
+
   // マイクやファン、パイプ、マイクの状態で数値は大きく変動します
   // 実測をしてみて適切と思われる数値に設定してください
-  static const float maxSpectrum = 1.5;  // FFT演算結果を見て調整
-  static const float threshold = 1.0; // RSMEのばらつきを見て調整
+  float maxSpectrum;                   // FFT演算結果を見て調整
+  static const float threshold = 1.0;  // RSMEのばらつきを見て調整
 
   // buffer_sizeで要求されたデータをbuffに格納する
   // 読み込みできたデータ量は read_size に設定される
   int ret = theAudio->readFrames(buff, buffer_size, &read_size);
-  if (ret != AUDIOLIB_ECODE_OK && 
-      ret != AUDIOLIB_ECODE_INSUFFICIENT_BUFFER_AREA) {
-    Serial.println("Error err = "+String(ret));
+  if (ret != AUDIOLIB_ECODE_OK && ret != AUDIOLIB_ECODE_INSUFFICIENT_BUFFER_AREA) {
+    Serial.println("Error err = " + String(ret));
     theAudio->stopRecorder();
     exit(1);
   }
-  
+
   if (read_size < buffer_size) {
     delay(buffering_time);
     return;
   }
 
-  FFT.put((q15_t*)buff, FFT_LEN);  //FFTを実行
-  FFT.get(pDst, 0);  // FFT演算結果を取得
-  avgFilter(pDst); // 過去のFFT演算結果で平滑化
-  
+  FFT.put((q15_t *)buff, FFT_LEN);  //FFTを実行
+  FFT.get(pDst, 0);                 // FFT演算結果を取得
+  avgFilter(pDst);                  // 過去のFFT演算結果で平滑化
+
   // DNNRTの入力データにFFT演算結果を設定
-  DNNVariable input(FFT_LEN/8); 
+  DNNVariable input(FFT_LEN / 8);
   float *dnnbuf = input.data();
-  for (int i = 0; i < FFT_LEN/8; ++i) {
+
+  //maxSpectrumの算出
+  maxSpectrum = 1e-9;
+  for (int i = 0; i < FFT_LEN / 8; ++i) {
+    maxSpectrum = max(pDst[i], maxSpectrum);
+  }
+
+  for (int i = 0; i < FFT_LEN / 8; ++i) {
     pDst[i] /= maxSpectrum;  // 0.0~1.0に正規化
     dnnbuf[i] = pDst[i];
   }
   // 推論を実行
   dnnrt.inputVariable(input, 0);
-  dnnrt.forward(); 
+  dnnrt.forward();
   DNNVariable output = dnnrt.outputVariable(0);
   // 二乗平均平方根誤差(RSME)を計算
   float sqr_err = 0.0;
-  for (int i = 0; i < FFT_LEN/8; ++i) {
+  for (int i = 0; i < FFT_LEN / 8; ++i) {
     float err = pDst[i] - output[i];
-    sqr_err += sqrt(err*err/(FFT_LEN/8));
-  } 
- 
+    sqr_err += sqrt(err * err / (FFT_LEN / 8));
+  }
+
   // RSMEの結果を平均化
-  static const int delta_average = 16; // 平均回数
+  static const int delta_average = 16;  // 平均回数
   static float average[delta_average];
   static uint8_t gCounter = 0;
-  
+
   average[gCounter++] = sqr_err;
   if (gCounter == delta_average) gCounter = 0;
   float avg_err = 0.0;
@@ -239,14 +308,42 @@ void loop(){
     avg_err += average[i];
   }
   avg_err /= delta_average;
-  Serial.println("Result: " + String(avg_err, 7));
+  //  Serial.println("Result: " + String(avg_err, 7));
 
   // 閾値でOK/NGを判定
   bool bNG = false;
   avg_err > threshold ? bNG = true : bNG = false;
-  if (bNG) Serial.println("Fault on the machine");
-
-　
+  //  if (bNG) Serial.println("Fault on the machine");
 
 
+  unsigned long curr = millis();    // 現在時刻を取得
+  if ((curr - prev) >= interval) {  // 前回実行時刻から実行周期以上経過していたら
+
+    Serial.println("UDP Send Start");
+
+
+    if (lteUdp.begin(port) == 1) {
+      if (lteUdp.beginPacket(host, port) == 1) {
+        Serial.println("UDP Data make Start");
+        char ad_str[10];
+//        sprintf(ad_str, "ad=%04x", ad_value);
+//        lteUdp.write(ad_str, 7);
+          for (int i = 0; i < FFT_LEN / 8; ++i) {
+            sprintf(ad_str,"%8.7f",pDst[i]);
+            lteUdp.write(ad_str,7);
+          }
+        if (lteUdp.endPacket() == 1) {
+          Serial.println("UDP Data Send OK");
+          delay(100);
+        } else {
+          Serial.println("UDP Data Send NG(endPacket)");
+        }
+      } else {
+        Serial.println("UDP Data make NG(beginPacket)");
+      }
+      lteUdp.stop();
+      Serial.println("UDP Send Stop");
+    }
+    prev += interval;  // 前回実行時刻に実行周期を加算
+  }
 }
