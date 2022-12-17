@@ -79,8 +79,6 @@ LTEUDP lteUdp;
 char host[] = "harvest.soracom.io";
 int port = 8514;
 int ad_value = 0;
-
-
 // URL, path & port (for example: arduino.cc)
 //char server[] = "harvest.soracom.io";
 
@@ -130,17 +128,6 @@ void udpsend(int ad_value) {
   }
 }
 
-
-/*
-void httpsend(){
-  HttpClient.begin(host);
-  http.addHeader("Content-Type", "application/json");
-  int status_code = http.POST((uint8_t*)buffer, strlen(buffer));
-  Serial.printf("status_code=%d\r\n", status_code);
-
-}
-*/
-
 void ltesetup() {
   char apn[LTE_NET_APN_MAXLEN] = APP_LTE_APN;
   LTENetworkAuthType authtype = APP_LTE_AUTH_TYPE;
@@ -151,7 +138,7 @@ void ltesetup() {
 
   while (true) {
 
-    /* Power on the modem and Enable the radio function. */
+    //　モデム電源をONしLTE通信機能を有効化する
 
     if (lteAccess.begin() != LTE_SEARCHING) {
       Serial.println("Could not transition to LTE_SEARCHING.");
@@ -161,10 +148,7 @@ void ltesetup() {
       }
     }
 
-    /* The connection process to the APN will start.
-     * If the synchronous parameter is false,
-     * the return value will be returned when the connection process is started.
-     */
+    //　APNへの接続開始
     if (lteAccess.attach(APP_LTE_RAT,
                          apn,
                          user_name,
@@ -315,23 +299,26 @@ void loop() {
   avg_err > threshold ? bNG = true : bNG = false;
   //  if (bNG) Serial.println("Fault on the machine");
 
-
+  //  定期的にFFTデータと判定結果をUDPで送信
   unsigned long curr = millis();    // 現在時刻を取得
   if ((curr - prev) >= interval) {  // 前回実行時刻から実行周期以上経過していたら
 
     Serial.println("UDP Send Start");
-
-
     if (lteUdp.begin(port) == 1) {
       if (lteUdp.beginPacket(host, port) == 1) {
         Serial.println("UDP Data make Start");
-        char ad_str[10];
-//        sprintf(ad_str, "ad=%04x", ad_value);
-//        lteUdp.write(ad_str, 7);
-          for (int i = 0; i < FFT_LEN / 8; ++i) {
-            sprintf(ad_str,"%8.7f",pDst[i]);
-            lteUdp.write(ad_str,7);
-          }
+        //pDstに入っているfloat(4bytes)128個分のデータをudpの送信データに設定する
+        lteUdp.write((byte*) pDst,4*128);
+        float s_avg_err[1];
+        s_avg_err[0] = avg_err;
+        lteUdp.write((byte*) s_avg_err,4);
+        Serial.println(avg_err);
+/** データ確認用シリアル出力
+        for (int i = 0; i < 10; ++i) {
+          Serial.print(pDst[i]);
+          Serial.println();
+        }
+**/
         if (lteUdp.endPacket() == 1) {
           Serial.println("UDP Data Send OK");
           delay(100);
