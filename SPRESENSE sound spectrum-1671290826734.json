@@ -1,0 +1,1180 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 3928,
+  "links": [],
+  "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 3,
+          "displayName": "frequency",
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {
+          "titleSize": 0,
+          "valueSize": 0
+        }
+      },
+      "pluginVersion": "7.5.10",
+      "targets": [
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "000",
+          "refId": "000",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "001",
+          "refId": "001",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "002",
+          "refId": "002",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "003",
+          "refId": "003",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "004",
+          "refId": "004",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "005",
+          "refId": "005",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "006",
+          "refId": "006",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "007",
+          "refId": "007",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "008",
+          "refId": "008",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "009",
+          "refId": "009",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "010",
+          "refId": "010",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "011",
+          "refId": "011",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "012",
+          "refId": "012",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "013",
+          "refId": "013",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "014",
+          "refId": "014",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "015",
+          "refId": "015",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "016",
+          "refId": "016",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "017",
+          "refId": "017",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "018",
+          "refId": "018",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "019",
+          "refId": "019",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "020",
+          "refId": "020",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "021",
+          "refId": "021",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "022",
+          "refId": "022",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "023",
+          "refId": "023",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "024",
+          "refId": "024",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "025",
+          "refId": "025",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "026",
+          "refId": "026",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "027",
+          "refId": "027",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "028",
+          "refId": "028",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "029",
+          "refId": "029",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "030",
+          "refId": "030",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "031",
+          "refId": "031",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "032",
+          "refId": "032",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "033",
+          "refId": "033",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "034",
+          "refId": "034",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "035",
+          "refId": "035",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "036",
+          "refId": "036",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "037",
+          "refId": "037",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "038",
+          "refId": "038",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "039",
+          "refId": "039",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "040",
+          "refId": "040",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "041",
+          "refId": "041",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "042",
+          "refId": "042",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "043",
+          "refId": "043",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "044",
+          "refId": "044",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "045",
+          "refId": "045",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "046",
+          "refId": "046",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "047",
+          "refId": "047",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "048",
+          "refId": "048",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "049",
+          "refId": "049",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "050",
+          "refId": "050",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "051",
+          "refId": "051",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "052",
+          "refId": "052",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "053",
+          "refId": "053",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "054",
+          "refId": "054",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "055",
+          "refId": "055",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "056",
+          "refId": "056",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "057",
+          "refId": "057",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "058",
+          "refId": "058",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "059",
+          "refId": "059",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "060",
+          "refId": "060",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "061",
+          "refId": "061",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "062",
+          "refId": "062",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "063",
+          "refId": "063",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "064",
+          "refId": "064",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "065",
+          "refId": "065",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "066",
+          "refId": "066",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "067",
+          "refId": "067",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "068",
+          "refId": "068",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "069",
+          "refId": "069",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "070",
+          "refId": "070",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "071",
+          "refId": "071",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "072",
+          "refId": "072",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "073",
+          "refId": "073",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "074",
+          "refId": "074",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "075",
+          "refId": "075",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "076",
+          "refId": "076",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "077",
+          "refId": "077",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "078",
+          "refId": "078",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "079",
+          "refId": "079",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "080",
+          "refId": "080",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "081",
+          "refId": "081",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "082",
+          "refId": "082",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "083",
+          "refId": "083",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "084",
+          "refId": "084",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "085",
+          "refId": "085",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "086",
+          "refId": "086",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "087",
+          "refId": "087",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "088",
+          "refId": "088",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "089",
+          "refId": "089",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "090",
+          "refId": "090",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "091",
+          "refId": "091",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "092",
+          "refId": "092",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "093",
+          "refId": "093",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "094",
+          "refId": "094",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "095",
+          "refId": "095",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "096",
+          "refId": "096",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "097",
+          "refId": "097",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "098",
+          "refId": "098",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "099",
+          "refId": "099",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "100",
+          "refId": "100",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "101",
+          "refId": "101",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "102",
+          "refId": "102",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "103",
+          "refId": "103",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "104",
+          "refId": "104",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "105",
+          "refId": "105",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "106",
+          "refId": "106",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "107",
+          "refId": "107",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "108",
+          "refId": "108",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "109",
+          "refId": "109",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "110",
+          "refId": "110",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "111",
+          "refId": "111",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "112",
+          "refId": "112",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "113",
+          "refId": "113",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "114",
+          "refId": "114",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "115",
+          "refId": "115",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "116",
+          "refId": "116",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "117",
+          "refId": "117",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "118",
+          "refId": "118",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "119",
+          "refId": "119",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "120",
+          "refId": "120",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "121",
+          "refId": "121",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "122",
+          "refId": "122",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "123",
+          "refId": "123",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "124",
+          "refId": "124",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "125",
+          "refId": "125",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "126",
+          "refId": "126",
+          "target": "440103227170052",
+          "type": "timeseries"
+        },
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "127",
+          "refId": "127",
+          "target": "440103227170052",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Spectrum",
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 2
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 16
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.10",
+      "targets": [
+        {
+          "datatype": "standard",
+          "devicetype": "subscribers",
+          "properties": "RMSE",
+          "refId": "A",
+          "target": "440103227170052",
+          "type": "timeseries"
+        }
+      ],
+      "title": "RMSE(root mean squared error)",
+      "type": "stat"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "SPRESENSE sound spectrum",
+  "uid": "qR69lbcVz",
+  "version": 9
+}
